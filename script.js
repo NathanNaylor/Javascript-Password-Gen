@@ -1,12 +1,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var charTypeArray = ["placeholder"]
+var charTypeArray = []
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
 function writePassword() {
+  //clears the array if you click button multiple times
+  charTypeArray = []
   // WHEN I click the button to generate a password
   // THEN I am presented with a series of prompts for password criteria
   var password = generatePassword();
@@ -30,68 +32,81 @@ function charType() {
   var numbers = "0123456789";
   var specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-  if (upperCaseCon && lowerCaseCon && numbersCon && specialCharsCon) {
-    charTypeArray = [upperCase, lowerCase, numbers, specialChars]
-    console.log(charTypeArray);
-
+  if(upperCaseCon) {
+    charTypeArray.push(upperCase)}
+  if(lowerCaseCon){
+    charTypeArray.push(lowerCase)
   }
-  else if (upperCaseCon && lowerCaseCon && numbersCon) {
-    charTypeArray = [upperCase, lowerCase, numbers]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon && lowerCaseCon && specialCharsCon) {
-    charTypeArray = [upperCase, lowerCase, specialChars]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon && numbersCon && specialCharsCon) {
-    charTypeArray = [upperCase, numbers, specialChars]
-    console.log(charTypeArray);
-
-  } else if (lowerCaseCon && numbersCon && specialCharsCon) {
-    charTypeArray = [lowerCase, numbers, specialChars]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon && lowerCaseCon) {
-    charTypeArray = [upperCase, lowerCase]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon && numbersCon) {
-    charTypeArray = [upperCase, numbers]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon && specialCharsCon) {
-    charTypeArray = [upperCase, specialChars]
-    console.log(charTypeArray);
-
-  } else if (lowerCaseCon && numbersCon) {
-    charTypeArray = [lowerCase, numbers]
-    console.log(charTypeArray);
-
-  } else if (lowerCaseCon && specialCharsCon) {
-    charTypeArray = [lowerCase, specialChars]
-    console.log(charTypeArray);
-
-  } else if (numbersCon && specialCharsCon) {
-    charTypeArray = [numbers, specialChars]
-    console.log(charTypeArray);
-
-  } else if (upperCaseCon) {
-    charTypeArray = [upperCase]
-    console.log(charTypeArray);
-
-  } else if (lowerCaseCon) {
-    charTypeArray = [lowerCase]
-    console.log(charTypeArray);
-
-  } else if (numbersCon) {
-    charTypeArray = [numbers]
-    console.log(charTypeArray);
-
-  } else if (specialCharsCon) {
-    charTypeArray = [specialChars]
-    console.log(charTypeArray);
-
+  if(numbersCon) {
+    charTypeArray.push(numbers)
   }
+  if(specialCharsCon) {
+    charTypeArray.push(specialChars) 
+  }
+  console.log(charTypeArray);
+
+  // if (upperCaseCon && lowerCaseCon && numbersCon && specialCharsCon) {
+  //   charTypeArray = [upperCase, lowerCase, numbers, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && lowerCaseCon && numbersCon) {
+  //   charTypeArray = [upperCase, lowerCase, numbers]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && lowerCaseCon && specialCharsCon) {
+  //   charTypeArray = [upperCase, lowerCase, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && numbersCon && specialCharsCon) {
+  //   charTypeArray = [upperCase, numbers, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (lowerCaseCon && numbersCon && specialCharsCon) {
+  //   charTypeArray = [lowerCase, numbers, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && lowerCaseCon) {
+  //   charTypeArray = [upperCase, lowerCase]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && numbersCon) {
+  //   charTypeArray = [upperCase, numbers]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon && specialCharsCon) {
+  //   charTypeArray = [upperCase, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (lowerCaseCon && numbersCon) {
+  //   charTypeArray = [lowerCase, numbers]
+  //   console.log(charTypeArray);
+
+  // } else if (lowerCaseCon && specialCharsCon) {
+  //   charTypeArray = [lowerCase, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (numbersCon && specialCharsCon) {
+  //   charTypeArray = [numbers, specialChars]
+  //   console.log(charTypeArray);
+
+  // } else if (upperCaseCon) {
+  //   charTypeArray = [upperCase]
+  //   console.log(charTypeArray);
+
+  // } else if (lowerCaseCon) {
+  //   charTypeArray = [lowerCase]
+  //   console.log(charTypeArray);
+
+  // } else if (numbersCon) {
+  //   charTypeArray = [numbers]
+  //   console.log(charTypeArray);
+
+  // } else if (specialCharsCon) {
+  //   charTypeArray = [specialChars]
+  //   console.log(charTypeArray);
+
+  // }
+  
 
 }
 
@@ -99,7 +114,7 @@ function charType() {
 function generatePassword() {
 
   var length = prompt("Please pick a length between 8 and 128 characters.")
-  length = Number(length);
+  length = parseInt(length);
   //validation
   if (8 <= length || length >= 128) {
     console.log(typeof length); //confirm that length is an int type
@@ -118,17 +133,17 @@ function generatePassword() {
       console.log(randomInt);
       //concatenates each random int to the desired length and prints the length in the console
       password = password.concat(randomInt);
-      console.log(password.length);
     }
   } else {
     alert("Please pick only numbers between 8 and 128.");
   }
   // WHEN prompted for character types to include in the password
   // THEN I choose lowercase, uppercase, numeric, and/or special characters
-
-
-
-
-
+  
+  
+  
+  
+  
+  console.log(password.length);
   return password;
 }
